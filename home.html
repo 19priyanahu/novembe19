@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg,#800000,#b22222);
+    overflow-x: hidden;
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #ff6347;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #ff4500;
+}
+
+/* Flip cards container - 3x3 grid */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+/* Card styles */
+.card {
+    perspective: 1000px;
+    height: 500px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Card front/back */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.card-back {
+    background: #ff6347;
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: fall 3s linear infinite;
+    z-index: 1000;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media(max-width:1024px){
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .card { height: 180px; }
+}
+
+@media(max-width:480px){
+    h1{font-size:1.5rem;}
+    p{font-size:0.9rem;}
+    .gallery { grid-template-columns: 1fr; }
+    .card { height: 150px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1 id="greeting"></h1>
+    <p id="message"></p>
+</header>
+
+<section class="gallery">
+    <!-- Card 1 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k5.jpg" alt="Memory 1"></div>
+            <div class="card-back">
+                First things first — HAPPY BIRTHDAY, DUSTBIN! 🎉
+Yes, I’m still calling you dustbin because honestly, that nickname fits you better than your actual name. Not because you’re a dustbin… but because you collect EVERYONE’S secrets, drama, gossip, and still manage to look cute. 😆
+Also, you’re the only dustbin who gets angry if anyone else calls you dustbin. Exclusive rights only. 😂
+            </div>
+        </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k8.jpg" alt="Memory 2"></div>
+            <div class="card-back">
+                The farewell day was so emotional; I’ll never forget all those memories we shared.
+            </div>
+        </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k9.jpg" alt="Memory 3"></div>
+            <div class="card-back">
+                Sitting on the last bench and talking in the math classes always made the day brighter!
+                Maths class with you was iconic.
+We understood trigonometry = 0%,
+but understood each other’s nonsense = 100%.
+Every time the teacher turned to the board, we started giggling like two WiFi-connected idiots.
+Our math skills? Questionable.
+Our comedy timing? Impeccable. 😆
+Even Pythagoras would’ve dropped his theorem and left the class if he saw us.
+            </div>
+        </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k2.jpg" alt="Memory 4"></div>
+            <div class="card-back">
+                Thank you for encouraging me to step out of my comfort zone; those moments helped me grow a lot!
+            </div>
+        </div>
+    </div>
+    <!-- Card 5 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k3.jpg" alt="Memory 5"></div>
+            <div class="card-back">
+                Even after a long time, talking with you feels just like our school days — nothing has changed!
+            </div>
+        </div>
+    </div>
+    <!-- Card 6 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k4.jpg" alt="Memory 6"></div>
+            <div class="card-back">
+                Out of everything… the biggest reality shock is that YOU are becoming a lawyer.
+The same girl who forgot formulas in maths…
+made “scientifically questionable” models in the science exhibition…
+but suddenly turned into a perfectionist when it came to our English project — the ONLY project we made seriously in the entire exhibition. 😂
+And now look at you, arguing like a Supreme Court advocate.
+I’m fully convinced you’ll win every case — not because of your law knowledge, but because the opponent will get tired of your endless arguments and just surrender. 😭
+Proud of you, dustbin. But also slightly scared for the legal system. 😆❤️<br>
+                Wishing you a bright and successful life ahead, filled with joy and achievements!
+            </div>
+        </div>
+    </div>
+    <!-- Card 7 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k6.jpg" alt="Memory 7"></div>
+            <div class="card-back">
+                Happy Birthday!
+They say age is just a number.
+True… but in your case, it’s a number that is starting to look slightly dangerous. 😆
+Soon people will stop asking your age and start asking your skincare routine.
+Enjoy the slow journey toward becoming a vintage model. 😭😂
+            </div>
+        </div>
+    </div>
+    <!-- Card 8 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k7.jpg" alt="Memory 8"></div>
+            <div class="card-back">
+                I still remember our creative art class sessions — the laughter and chaos were unforgettable!
+            </div>
+        </div>
+    </div>
+    <!-- Card 9 -->
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="image/k1.jpg" alt="Memory 9"></div>
+            <div class="card-back">
+                I hope your future turns out exactly the way you dream it — full of victories, confidence, and endless happiness.
+May every step you take lead you closer to the person you’re meant to become.
+You deserve a life where your hard work pays off, your dreams stand tall, and your smile never fades.
+
+May your law journey open doors to opportunities that make you proud — the kind of success that makes people say, “Yep, she was born for this.”
+I hope you win every case you fight, every challenge you face, and every battle life throws at you (and yes, I hope your opponents cry a little too 😆).
+
+May you always stay surrounded by people who support you, respect you, and make your life brighter — just like you do for others.
+I wish your path is filled with praise, achievements, peace, and moments you’ll remember forever.
+
+And above everything, I hope you never lose the spark that makes you you — the same funny, strong, dramatic, chaos-causing, lovable person who made school so unforgettable.
+
+Your future is bright, dustbin — go shine even more. ✨🤍
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Click Here button to greeting page -->
+<button onclick="goGreetingPage()">Click Here</button>
+
+<audio id="bgMusic" loop autoplay>
+    <source src="image/birthday_song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Load name
+const name = localStorage.getItem("birthdayName");
+const password = localStorage.getItem("birthdayPassword");
+if(!name || !password){
+    alert("Please login first!");
+    window.location.href="index.html";
+}
+
+// Show personalized greeting
+document.getElementById('greeting').innerText = `Welcome to your special day,Dustbin! 🎉`;
+document.getElementById('message').innerText = `Hope your birthday is as amazing as you are, ${name}! 💖`;
+
+// Play music
+const music = document.getElementById('bgMusic');
+music.play();
+
+// Confetti generator
+function createConfetti(){
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random()*window.innerWidth+'px';
+    confetti.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(confetti);
+    setTimeout(()=>confetti.remove(),3000);
+}
+setInterval(createConfetti,200);
+
+// Go to greeting page
+function goGreetingPage(){
+    window.location.href = "final_greeting.html";
+}
+</script>
+
+</body>
+</html>

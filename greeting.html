@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #800000, #b22222);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: #ff6347;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff4500;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="greeting"></h1>
+    <p id="message"></p>
+    <button onclick="goHome()">Go to Home Page</button>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" autoplay loop muted>
+        <source src="image/birthday_song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Get name and password
+        const name = localStorage.getItem("birthdayName");
+        const password = localStorage.getItem("birthdayPassword");
+
+        if (!name || !password) {
+            alert("Please login first!");
+            window.location.href = "index.html";
+        }
+
+        // Show greeting
+        document.getElementById('greeting').innerText = `Happy Birthday, ${name}! 🎂💖`;
+        document.getElementById('message').innerText = `Wishing you a wonderful day filled with love and joy, ${name}!`;
+
+        // Play background music (muted autoplay → unmute after short delay)
+        const bgMusic = document.getElementById("bgMusic");
+        bgMusic.play().then(() => {
+            setTimeout(() => {
+                bgMusic.muted = false; // Unmute after 1 second
+            }, 1000);
+        }).catch((error) => {
+            console.log("Autoplay blocked:", error);
+        });
+
+        // Confetti Animation
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }
+        setInterval(createConfetti, 200);
+
+        // Go to home page
+        function goHome() {
+            window.location.href = "home.html";
+        }
+    </script>
+
+</body>
+
+</html>

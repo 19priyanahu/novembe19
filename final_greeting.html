@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg,#ff7f50,#ff4500);
+    overflow-x: hidden;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: fall 3s linear infinite;
+    z-index: 1000;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    background: #ff6347;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff4500;
+}
+
+@media(max-width:480px){
+    h1{font-size:2rem;}
+    p{font-size:1rem;}
+    button{font-size:1rem;padding:12px 20px;}
+}
+</style>
+</head>
+<body>
+
+<h1 id="finalGreeting"></h1>
+<p id="finalMessage"></p>
+
+<!-- Optional: Restart or go back to home page -->
+<button onclick="backToHome()">Go Back</button>
+
+<audio id="bgMusic" loop autoplay>
+    <source src="image/birthday_song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Load name
+const name = localStorage.getItem("birthdayName");
+if(!name){
+    alert("Please login first!");
+    window.location.href="index.html";
+}
+
+// Show final personalized greeting
+document.getElementById('finalGreeting').innerText = `Happy Birthday, ${name}! 🎉🎂`;
+document.getElementById('finalMessage').innerText = `May your future be bright, successful, and full of happiness! 💖`;
+
+// Play music
+const music = document.getElementById('bgMusic');
+music.play();
+
+// Confetti generator
+function createConfetti(){
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random()*window.innerWidth+'px';
+    confetti.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(confetti);
+    setTimeout(()=>confetti.remove(),3000);
+}
+setInterval(createConfetti,200);
+
+// Back to home page
+function backToHome(){
+    window.location.href="home.html";
+}
+</script>
+
+</body>
+</html>
