@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: url("image/k4.jpg");
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5%;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            width: 90%;
+            max-width: 350px;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            background: #ff6347;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff4500;
+        }
+
+        .password-note {
+            color: #fff;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .error {
+            color: yellow;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h1>Happy Birthday 🎉</h1>
+        <input type="text" id="username" placeholder="Enter your name">
+        <input type="password" id="password" placeholder="Set your password">
+        <div class="password-note">
+            Password must be 6+ characters, include uppercase, lowercase, number & special character.
+        </div>
+        <div class="error" id="error"></div>
+        <button onclick="register()">Continue</button>
+    </div>
+
+    <script>
+        // Password validation function
+        function isValidPassword(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
+            return regex.test(password);
+        }
+
+        function register() {
+            const name = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorDiv = document.getElementById('error');
+
+            if (name === "" || password === "") {
+                errorDiv.innerText = "Please enter both name and password!";
+                return;
+            }
+
+            if (!isValidPassword(password)) {
+                errorDiv.innerText = "Password does not meet criteria!";
+                return;
+            }
+
+            // Save to localStorage
+            localStorage.setItem("birthdayName", name);
+            localStorage.setItem("birthdayPassword", password);
+
+            // Redirect to greeting page
+            window.location.href = "greeting.html";
+        }
+    </script>
+
+</body>
+
+</html>
